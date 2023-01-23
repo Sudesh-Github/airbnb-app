@@ -3,7 +3,6 @@ import os
 import sqlalchemy
 import pandas    as pd
 import streamlit as st
-from dotenv import load_dotenv
 
 # Initial Configs
 st.set_page_config(
@@ -95,7 +94,6 @@ def final_adjustments(data):
 
 if __name__ == "__main__":
     # Loading Credentials
-    load_dotenv()
     USER = os.getenv('USER')
     PASSWORD = os.getenv('PASSWORD')
     HOST = os.getenv('HOST')
