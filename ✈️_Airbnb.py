@@ -1,7 +1,9 @@
 # Imports
+import os
 import sqlalchemy
 import pandas    as pd
 import streamlit as st
+from dotenv import load_dotenv
 
 # Initial Configs
 st.set_page_config(
@@ -92,8 +94,15 @@ def final_adjustments(data):
     return data
 
 if __name__ == "__main__":
-    # Loading initial parameters
-    conn_url = "postgresql://brunodifranco:ExoCs9IRXJ6u@ep-soft-disk-362766.us-east-2.aws.neon.tech:5432/neondb" # obs.: this would ideally be hidden
+    # Loading Credentials
+    load_dotenv()
+    USER = os.getenv('USER')
+    PASSWORD = os.getenv('PASSWORD')
+    HOST = os.getenv('HOST')
+    PORT = os.getenv('PORT')
+    DATABASE = os.getenv('DATABASE')
+
+    conn_url = f'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}'
 
     # Get Data
     final_data_pred = get_data(conn_url)
