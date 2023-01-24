@@ -15,22 +15,20 @@ def load_data(file):
 
 def gender_analysis(data):
       fig, axes = plt.subplots(3, 1, figsize=(20.5, 16.5))
+      plt.legend(loc='upper left')  
             
       aux1 = data[(data['Gender']!='-unknown-') & (data['Gender']!='OTHER')][['User ID', 'Gender', 'Predicted Third Country Destination']].groupby(['Gender', 'Predicted Third Country Destination']).count().reset_index().rename(columns={'User ID' : 'Amount of Users'})
       axes[0] = sns.barplot(ax=axes[0] , x='Predicted Third Country Destination', y='Amount of Users', hue='Gender', data=aux1.sort_values(by='Amount of Users'), palette='deep')
-      plt.legend(loc='upper left')  
       for i in axes[0].containers:
         axes[0].bar_label(i,)
 
       aux2 = data[(data['Gender']!='-unknown-') & (data['Gender']!='OTHER')][['User ID', 'Gender', 'Predicted Fourth Country Destination']].groupby(['Gender', 'Predicted Fourth Country Destination']).count().reset_index().rename(columns={'User ID' : 'Amount of Users'})
       axes[1] = sns.barplot(ax=axes[1] , x='Predicted Fourth Country Destination', y='Amount of Users', hue='Gender', data=aux2.sort_values(by='Amount of Users'), palette='deep')
-      plt.legend(loc='upper left')  
       for i in axes[1].containers:
         axes[1].bar_label(i,)
 
       aux3 = data[(data['Gender']!='-unknown-') & (data['Gender']!='OTHER')][['User ID', 'Gender', 'Predicted Fifth Country Destination']].groupby(['Gender', 'Predicted Fifth Country Destination']).count().reset_index().rename(columns={'User ID' : 'Amount of Users'})
       axes[2] = sns.barplot(ax=axes[2] , x='Predicted Fifth Country Destination', y='Amount of Users', hue='Gender', data=aux3.sort_values(by='Amount of Users'), palette='deep')
-      plt.legend(loc='upper left')  
       for i in axes[2].containers:
         axes[2].bar_label(i,)
 
